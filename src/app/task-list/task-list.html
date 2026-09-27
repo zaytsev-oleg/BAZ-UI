@@ -1,0 +1,31 @@
+@if (tasks().length > 0) {
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Название</th>
+        <th>Описание</th>
+        <th>Статус (выполнено или нет)</th>
+        <th>Дата создания</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (task of tasks(); track task.id) {
+        <tr>
+          <td>{{ task.id }}</td>
+          <td>{{ task.title }}</td>
+          <td>{{ task.description }}</td>
+          <td class="status-cell">
+            <input type="checkbox" [checked]="task.isCompleted" (change)="onStatusChanged(task.id, $event)"/>
+          </td>
+          <td>{{ task.createdAt | date:'dd.MM.yyyy HH:mm:ss' }}</td>
+          <td><button type="button" class="delete-button" (click)="onDelete(task.id)">Удалить</button></td>
+        </tr>
+      }
+    </tbody>
+  </table>
+} @else {
+    <p>Нет данных для отображения.</p>
+}

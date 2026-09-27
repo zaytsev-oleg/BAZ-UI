@@ -1,0 +1,41 @@
+<div class="create-form">
+  <h2>Создать новое задание</h2>
+  
+  <div class="form-field">
+    <label for="task-title">Название</label>
+    <input
+        id="task-title"
+        type="text"
+        placeholder="Введите название задания"
+        maxlength="256"
+        [(ngModel)]="newTask.title"/>
+  </div>
+  <div class="form-field">
+    <label for="task-description">Описание</label>
+    <textarea
+        id="task-description"
+        rows="4"
+        placeholder="Введите описание задания"
+        maxlength="512"
+        [(ngModel)]="newTask.description">
+    </textarea>
+  </div>
+  
+  <div class="form-field checkbox-field">
+    <input
+        id="task-completed"
+        type="checkbox"
+        [(ngModel)]="newTask.isCompleted"/>
+    <label for="task-completed">Задание выполнено</label>
+  </div>
+  <div class="form-actions">
+    <button
+        type="button"
+        class="save-button"
+        (click)="createTask()">Создать</button>
+    <button
+        type="button"
+        class="cancel-button"
+        (click)="cancel()">Отменить</button>
+  </div>
+</div>

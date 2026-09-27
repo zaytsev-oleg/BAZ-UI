@@ -1,0 +1,28 @@
+<h1>BAZ TaskItems</h1>
+
+@if (loading()) {
+  <p>Загружаю данные...</p>
+} @else {
+  @if (error()) {
+    <p>Ошибка: {{ error() }}</p>
+  } @else {
+    @if (showCreateForm()) {
+      <app-create-new-task
+        (taskCreated)="onNewTaskCreated($event)"
+        (cancelled)="onCreateCancelled()" />
+    }
+    @else {
+      <button
+        type="button"
+        class="create-button"
+        (click)="openCreateForm()">
+        Создать новое задание
+      </button>
+    }
+
+    <app-task-list
+      [tasks]="tasks()"
+      (statusChanged)="onStatusChanged($event)"
+      (deleteRequested)="onDeleteTask($event)" />
+    }
+}
